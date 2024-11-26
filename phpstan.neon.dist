@@ -1,0 +1,28 @@
+includes:
+	- phpstan-baseline.php
+	- phar://vendor/phpstan/phpstan/phpstan.phar/conf/bleedingEdge.neon
+
+parameters:
+	tmpDir: build/phpstan
+	level: 5
+	paths:
+		- src/
+	bootstrapFiles:
+		- vendor/codeigniter4/framework/system/Test/bootstrap.php
+	scanDirectories:
+		- vendor/codeigniter4/framework/system/Helpers
+	dynamicConstantNames:
+		- CodeIgniter\CodeIgniter::CI_VERSION
+	codeigniter:
+		additionalConfigNamespaces:
+			- Deployed\MythToShield\Config
+			- CodeIgniter\Shield\Config
+		additionalServices:
+			- CodeIgniter\Shield\Config\Services
+			- CodeIgniter\Settings\Config\Services
+	strictRules:
+		allRules: false
+		disallowedLooseComparison: true
+		booleansInConditions: true
+		disallowedConstructs: true
+		matchingInheritedMethodNames: true
