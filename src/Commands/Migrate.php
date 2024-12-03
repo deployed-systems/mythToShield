@@ -288,7 +288,7 @@ class Migrate extends BaseCommand
 
         if ($permissions !== []) {
             $permissions = array_reduce($permissions, static function ($carry, $permission) {
-                $carry[$permission->name] = $permission->description;
+                $carry[strtolower($permission->name)] = $permission->description;
 
                 return $carry;
             }, []);
@@ -309,7 +309,7 @@ class Migrate extends BaseCommand
 
         if ($groupsPermissions !== []) {
             $groupsPermissions = array_reduce($groupsPermissions, static function ($carry, $groupPermission) {
-                $carry[$groupPermission->groupName][] = $groupPermission->permissionName;
+                $carry[$groupPermission->groupName][] = strtolower($groupPermission->permissionName);
 
                 return $carry;
             });
